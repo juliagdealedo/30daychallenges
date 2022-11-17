@@ -10,8 +10,10 @@ library(giscoR)
 library(rmapshaper)
 library(smoothr)
 library(ggrepel)
+library(rnaturalearth)
 library(showtext)
 library(sysfonts)
+library(ggspatial)
 
 font_add_google("Rubik", "rub")
 showtext_auto()
@@ -25,6 +27,13 @@ ggplot(world)+
   theme_void()+
   theme(panel.grid.major = element_line(), panel.background = element_rect(fill = "black"))+
   annotate(x = 140, y = -90, "text", label = "JGA | #30daymapchallenge", 
-           size = 2, family="rub", hjust = 0, colour="aliceblue")
-ggsave("challenge_fin.png")
+           size = 2, family="rub", hjust = 0, colour="aliceblue")+
+  annotation_north_arrow(location = "tl", which_north = "true", 
+                         pad_x = unit(0.25, "in"), pad_y = unit(0.85, "in"),
+                         height = unit(1, "cm"),
+                         width = unit(1, "cm"),
+                         style = north_arrow_fancy_orienteering( text_col = 'white',
+                         line_col = 'white', 
+                         fill = 'white'), rotation=180) 
 
+ggsave("challenge_fin.png")
