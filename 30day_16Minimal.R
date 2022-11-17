@@ -19,8 +19,8 @@ font_add_google("Rubik", "rub")
 showtext_auto()
 
 world_data <- ne_countries(scale = "medium", returnclass = "sf")
-my_crs <- " +proj=longlat +datum=WGS84 +no_defs +axis=esu"
-world <- world_data %>% st_transform(crs = my_crs)  %>% rmapshaper::ms_simplify(keep = 0.001)  
+mcarthur <- " +proj=robin +datum=WGS84 +no_defs +axis=esu"
+world <- world_data %>% st_transform(crs = mcarthur)  %>% rmapshaper::ms_simplify(keep = 0.001)  
 ggplot(world)+
   geom_sf(fill = "black", color = "aliceblue")+
   coord_sf()+
